@@ -16,25 +16,16 @@ class LocationNode {
 	double y;	 // y-coordinate
 
 	int getRandomNumber() {
-		// srand((unsigned)time(NULL));
-
-		// return rand() % (NODE_RANGE * 2) - NODE_RANGE;
 		return (rand() % NODE_RANGE) * pow(-1, ceil(rand() % 2));
 	}
 
  public:
 	LocationNode() {
 		// set random coordinates
-		// x = 0;
-		// y = 0;
-
-		// x = (rand() % NODE_RANGE) * pow(-1, floor(rand() * 2));
-		// y = (rand() % NODE_RANGE) * pow(-1, floor(rand() * 2));
-
 		x = getRandomNumber();
 		y = getRandomNumber();
 
-		cout << "(" << x << ", " << y << ")\n";
+		// cout << "(" << x << ", " << y << ")\n";
 	}
 
 	LocationNode(double new_x, double new_y) {
@@ -70,6 +61,27 @@ class LocationNode {
 	 */
 	int getProcessingPower(int numberOfTasks) {
 		return numberOfTasks;
+	}
+
+	/**
+	 * @brief Compares to see if two nodes are of the same location
+	 * 
+	 * @param otherNode 
+	 * @return true 
+	 * @return false 
+	 */
+	bool operator!=(LocationNode &otherNode) {
+		return (getX() == otherNode.getX() && getY() == otherNode.getY());
+	}
+
+	/**
+	 * @brief Double setter method
+	 * 
+	 * @param otherNode 
+	 */
+	void operator=(LocationNode &otherNode) {
+		setX(otherNode.getX());
+		setY(otherNode.getY());
 	}
 };
 

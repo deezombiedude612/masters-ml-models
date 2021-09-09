@@ -21,19 +21,6 @@ void generatePopulation(vector<LocationNode>* population, unsigned int size) {
 }
 
 /**
- * @brief Returns cartesian distance between nodes
- * 
- * @param node1 
- * @param node2 
- * @return double 
- */
-double cartesianDistance(LocationNode node1, LocationNode node2) {
-	double cartesianDistance = 0;
-
-	return cartesianDistance;
-}
-
-/**
  * @brief Fitness function: based on latency and time taken
  * 
  * @param population 
@@ -65,11 +52,35 @@ vector<double> calculateFitness(vector<LocationNode> population) {
 
 		double thisFitness = sum / population.size();
 		fitness.push_back(thisFitness);
-		cout << "Fitness: " << thisFitness << endl;
+		// cout << "Fitness: " << thisFitness << endl;
 	}
-	cout << endl;
+	// cout << endl;
 
 	return fitness;
+}
+
+/**
+ * @brief Prepares Roulette wheel depicting fitness ratios for all nodes
+ * 
+ * @param populationFitness 
+ * @return vector<double> 
+ */
+vector<double> calculateFitnessRatio(vector<double> populationFitness) {
+	vector<double> roulette;
+
+	// obtain total fitness first
+	double totalFitness = 0;
+	for (vector<double>::iterator ptr = populationFitness.begin(); ptr < populationFitness.end(); ptr++)
+		totalFitness += (*ptr);
+
+	cout << "Total Fitness: " << totalFitness << endl;
+
+	for (vector<double>::iterator ptr = populationFitness.begin(); ptr < populationFitness.end(); ptr++) {
+		roulette.push_back((*ptr) / totalFitness);
+		cout << "Fitness Ratio: " << (*ptr) / totalFitness << endl;
+	}
+
+	return roulette;
 }
 
 #endif
