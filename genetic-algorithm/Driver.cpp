@@ -35,6 +35,7 @@ int main(int argc, char **argv) {
 	// cout << "Generating " << numberOfParentPairs << " parent pairs..\n";
 
 	// vector<LocationNode[]> parentPairs;
+	vector<vector<LocationNode>> parentPairs;
 
 	for (int iter = 0; iter < numberOfParentPairs; ++iter) {
 		LocationNode parents[2];
@@ -70,13 +71,17 @@ int main(int argc, char **argv) {
 				parentPtr = next(parentPtr, 1);
 			}
 		} while (parents[0] != parents[1]);
-		// } while (parent1 != parent2);
 
-		cout << "Roulette 1: " << roulette1 << " (" << parents[0].getX() << ", " << parents[0].getY() << ")\n";
-		cout << "Roulette 2: " << roulette2 << " (" << parents[1].getX() << ", " << parents[1].getY() << ")\n";
+		std::cout << "Roulette 1: " << roulette1 << " (" << parents[0].getX() << ", " << parents[0].getY() << ")\n";
+		std::cout << "Roulette 2: " << roulette2 << " (" << parents[1].getX() << ", " << parents[1].getY() << ")\n";
 
 		// parentPairs.push_back(parents);
+		vector<LocationNode> pair;
+		for (int iter2 = 0; iter2 < 2; ++iter2) pair.push_back(parents[iter2]);
+		parentPairs.push_back(pair);
 	}
+
+	// Perform crossover
 
 	return 0;
 }
