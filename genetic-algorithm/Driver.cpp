@@ -81,7 +81,7 @@ int main(int argc, char **argv) {
 		parentPairs.push_back(pair);
 	}
 
-	// Perform crossover
+	// perform crossover
 
 	return 0;
 }
